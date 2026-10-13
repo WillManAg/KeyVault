@@ -13,6 +13,7 @@
     
     Integer puntuacion = null;
     String evaluar = null;
+    String recomendar = null;
     
     if (password != null && !password.isEmpty()) {
         
@@ -21,6 +22,8 @@
         puntuacion = evaluador.calcularFortaleza(password);
         
         evaluar = evaluador.nivelPassword(puntuacion);
+        
+        recomendar = evaluador.consejo(password);
         
     }
 
@@ -52,6 +55,8 @@
         <p>Puntuación = <%= puntuacion %> </p>
         
         <p>Nota de la contraseña = <%= evaluar %> </p>
+        
+        <p><%= recomendar %></p>
         
         
         <% } %>

@@ -8,6 +8,10 @@ package modelo;
  *
  * @author william.marin
  */
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class EvaluadorPassword {
 
     // voy a calcular sobre 10 la puntuación de la contraseña, 2 puntos por 5 criterios: longitud, mayus, minus, num y char especial.
@@ -17,9 +21,10 @@ public class EvaluadorPassword {
         boolean tieneMinus = false;
         boolean tieneNum = false;
         boolean tieneChar = false;
+        
 
         if (password.length() >= 8) {
-            puntuacion += 20;
+            puntuacion += 2;
         }
 
         for (int i = 0; i < password.length(); i++) {
@@ -40,25 +45,25 @@ public class EvaluadorPassword {
 
         if (tieneMayus) {
 
-            puntuacion += 20;
+            puntuacion += 2;
 
         }
 
         if (tieneMinus) {
 
-            puntuacion += 20;
+            puntuacion += 2;
 
         }
 
         if (tieneNum) {
 
-            puntuacion += 20;
+            puntuacion += 2;
 
         }
 
         if (tieneChar) {
 
-            puntuacion += 20;
+            puntuacion += 2;
 
         }
 
@@ -67,11 +72,11 @@ public class EvaluadorPassword {
 
     public String nivelPassword(int puntuacion) {
         
-        if (puntuacion <= 40) {
+        if (puntuacion <= 4) {
 
             return "Débil";
 
-        } else if (puntuacion <= 80) {
+        } else if (puntuacion <= 8) {
 
             return "Media";
 
@@ -82,4 +87,51 @@ public class EvaluadorPassword {
         }
     }
 
+    public String consejo(String password) {
+        
+        boolean tieneMayus = false;
+        boolean tieneMinus = false;
+        boolean tieneNum = false;
+        boolean tieneChar = false;
+        List<String> faltan = new ArrayList<>();
+        
+        for (int i = 0; i < password.length(); i++) {
+
+            char caracter = password.charAt(i);
+
+            if (Character.isUpperCase(caracter)) {
+                tieneMayus = true;
+            } else if (Character.isLowerCase(caracter)) {
+                tieneMinus = true;
+            } else if (Character.isDigit(caracter)) {
+                tieneNum = true;
+            } else {
+                tieneChar = true;
+            }
+
+        }
+        
+        if (password.length() <=8 ) {
+            faltan.add("tener al menos 8 caracteres");
+        }
+        if (!tieneMayus) {
+            faltan.add("una letra mayúscula");
+        }
+        if (!tieneMinus) {
+            faltan.add("una letra minúscula");
+        }
+        if (!tieneNum) {
+            faltan.add("un número");
+        }
+        if (!tieneChar) {
+            faltan.add("un carácter especial");
+        }
+        
+        if (faltan.isEmpty()) {
+            return "La contraseña es perfecta!";
+        }
+        
+        return "Para mejorar la puntuación falta: " + String.join(", ", faltan) + ".";
+    }
+    
 }
