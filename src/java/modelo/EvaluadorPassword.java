@@ -111,7 +111,7 @@ public class EvaluadorPassword {
 
         }
         
-        if (password.length() <=8 ) {
+        if (password.length() <8 ) {
             faltan.add("tener al menos 8 caracteres");
         }
         if (!tieneMayus) {
