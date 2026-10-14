@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.RegistroPassword;
 import modelo.VaultDAO;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/guardaVault")
 public class GuardaVaultServlet extends HttpServlet {
@@ -63,6 +64,25 @@ public class GuardaVaultServlet extends HttpServlet {
         dao.guardarRegistro(
                 rutaArchivo,
                 registro
+        );
+
+        HttpSession session
+                = request.getSession();
+
+        Integer contadorClaves
+                = (Integer) session.getAttribute("contadorClaves");
+
+        if (contadorClaves == null) {
+
+            contadorClaves = 0;
+
+        }
+
+        contadorClaves++;
+
+        session.setAttribute(
+                "contadorClaves",
+                contadorClaves
         );
 
         response.sendRedirect(

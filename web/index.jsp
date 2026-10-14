@@ -41,6 +41,9 @@
 <%
     String nombreUsuario
             = (String) session.getAttribute("nombreUsuario");
+
+    Integer contadorClaves
+            = (Integer) session.getAttribute("contadorClaves");
 %>
 
 <!DOCTYPE html>
@@ -65,6 +68,19 @@
 
         <p>
             Bienvenido, <strong><%= nombreUsuario%></strong>
+        </p>
+
+        <%
+            }
+        %>
+
+        <%
+            if (contadorClaves != null) {
+        %>
+
+        <p>
+            Claves guardadas en esta sesión:
+            <strong><%= contadorClaves%></strong>
         </p>
 
         <%
