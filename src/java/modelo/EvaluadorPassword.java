@@ -24,7 +24,7 @@ public class EvaluadorPassword {
         
 
         if (password.length() >= 8) {
-            puntuacion += 2;
+            puntuacion += 20;
         }
 
         for (int i = 0; i < password.length(); i++) {
@@ -45,25 +45,25 @@ public class EvaluadorPassword {
 
         if (tieneMayus) {
 
-            puntuacion += 2;
+            puntuacion += 20;
 
         }
 
         if (tieneMinus) {
 
-            puntuacion += 2;
+            puntuacion += 20;
 
         }
 
         if (tieneNum) {
 
-            puntuacion += 2;
+            puntuacion += 20;
 
         }
 
         if (tieneChar) {
 
-            puntuacion += 2;
+            puntuacion += 20;
 
         }
 
@@ -72,11 +72,11 @@ public class EvaluadorPassword {
 
     public String nivelPassword(int puntuacion) {
         
-        if (puntuacion <= 4) {
+        if (puntuacion <= 40) {
 
             return "Débil";
 
-        } else if (puntuacion <= 8) {
+        } else if (puntuacion <= 80) {
 
             return "Media";
 

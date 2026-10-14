@@ -5,61 +5,43 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="modelo.EvaluadorPassword"%>
-
-<%
-
-    String password = request.getParameter("password");
-    
-    Integer puntuacion = null;
-    String evaluar = null;
-    String recomendar = null;
-    
-    if (password != null && !password.isEmpty()) {
-        
-        EvaluadorPassword evaluador = new EvaluadorPassword();
-        
-        puntuacion = evaluador.calcularFortaleza(password);
-        
-        evaluar = evaluador.nivelPassword(puntuacion);
-        
-        recomendar = evaluador.consejo(password);
-        
-    }
-
-%>
 
 <!DOCTYPE html>
+
 <html>
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+        <meta charset="UTF-8">
+
+        <title>KeyVault</title>
+
     </head>
+
     <body>
-        <h1>Hello World!</h1>
-        <form action="index.jsp" method="post">
-            
-            <label>Contraseña</label>
-            
-            <input type="text" name="password">
-            <input type="submit" name="Evaluar">
-            
+
+        <h1>KeyVault</h1>
+
+        <h2>Auditoría de contraseña</h2>
+
+
+        <form action="<%= request.getContextPath() %>/evaluaPassword"
+              method="post">
+
+            <label for="password">
+                Introduce una contraseña:
+            </label>
+
+            <input type="text"
+                   id="password"
+                   name="password"
+                   required>
+
+            <input type="submit"
+                   value="Analizar">
+
         </form>
-        
-        <%
-            if (puntuacion != null) {
-        %>
-        
-        <h2>Resultado</h2>
-        
-        <p>Puntuación = <%= puntuacion %> </p>
-        
-        <p>Nota de la contraseña = <%= evaluar %> </p>
-        
-        <p><%= recomendar %></p>
-        
-        
-        <% } %>
-        
+
     </body>
+
 </html>
