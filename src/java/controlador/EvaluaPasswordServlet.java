@@ -5,10 +5,9 @@
 package controlador;
 
 /**
- * 
+ *
  * @author william.marin
  */
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,52 +16,54 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.EvaluadorPassword;
 
+import javax.servlet.http.Cookie;
+
 @WebServlet("/evaluaPassword")
 public class EvaluaPasswordServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
+            HttpServletResponse response)
             throws ServletException, IOException {
 
+        String password
+                = request.getParameter("password");
 
-        String password =
-                request.getParameter("password");
+        EvaluadorPassword evaluador
+                = new EvaluadorPassword();
 
+        int puntuacion
+                = evaluador.calcularFortaleza(password);
 
-        EvaluadorPassword evaluador =
-                new EvaluadorPassword();
+        String nivel
+                = evaluador.nivelPassword(puntuacion);
 
+        String consejo
+                = evaluador.consejo(password);
 
-        int puntuacion =
-                evaluador.calcularFortaleza(password);
+        Cookie cookie = new Cookie(
+                "ultimaEvaluacion",
+                String.valueOf(System.currentTimeMillis())
+        );
 
+        cookie.setMaxAge(24 * 60 * 60);
 
-        String nivel =
-                evaluador.nivelPassword(puntuacion);
-
-
-        String consejo =
-                evaluador.consejo(password);
-
+        response.addCookie(cookie);
 
         request.setAttribute(
                 "puntuacion",
                 puntuacion
         );
 
-
         request.setAttribute(
                 "nivel",
                 nivel
         );
 
-
         request.setAttribute(
                 "consejo",
                 consejo
         );
-
 
         request.getRequestDispatcher(
                 "/resultadoAnalisis.jsp"
