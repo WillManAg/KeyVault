@@ -7,14 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    Integer puntuacion =
-            (Integer) request.getAttribute("puntuacion");
+    Integer puntuacion
+            = (Integer) request.getAttribute("puntuacion");
 
-    String nivel =
-            (String) request.getAttribute("nivel");
+    String nivel
+            = (String) request.getAttribute("nivel");
 
-    String consejo =
-            (String) request.getAttribute("consejo");
+    String consejo
+            = (String) request.getAttribute("consejo");
+
+    String tiempoRotura
+            = (String) request.getAttribute("tiempoRotura");
 %>
 
 <!DOCTYPE html>
@@ -36,29 +39,37 @@
 
         <p>
             Fortaleza de la contraseña:
-            <strong><%= puntuacion %>%</strong>
+            <strong><%= puntuacion%>%</strong>
         </p>
 
 
-        <progress value="<%= puntuacion %>"
+        <progress value="<%= puntuacion%>"
                   max="100">
         </progress>
 
 
         <p>
             Nivel de seguridad:
-            <strong><%= nivel %></strong>
+            <strong><%= nivel%></strong>
         </p>
-
-
-        <h2>Faltan los siguientes criterios</h2>
 
         <p>
-            <%= consejo %>
+            Tiempo estimado de rotura:
+            <strong><%= tiempoRotura%></strong>
         </p>
 
+        <h2>Recomendaciones para la contraseña</h2>
 
-        <form action="<%= request.getContextPath() %>/index.jsp"
+        <p>
+            <%= consejo%>
+        </p>
+
+        <small>
+            Estimación orientativa basada en la tabla de ataques de fuerza bruta con hardware de alta gama.
+        </small>
+
+
+        <form action="<%= request.getContextPath()%>/index.jsp"
               method="get">
 
             <input type="submit"

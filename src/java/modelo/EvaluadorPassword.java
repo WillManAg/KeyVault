@@ -8,7 +8,6 @@ package modelo;
  *
  * @author william.marin
  */
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,6 @@ public class EvaluadorPassword {
         boolean tieneMinus = false;
         boolean tieneNum = false;
         boolean tieneChar = false;
-        
 
         if (password.length() >= 8) {
             puntuacion += 20;
@@ -71,7 +69,7 @@ public class EvaluadorPassword {
     }
 
     public String nivelPassword(int puntuacion) {
-        
+
         if (puntuacion <= 40) {
 
             return "Débil";
@@ -88,13 +86,13 @@ public class EvaluadorPassword {
     }
 
     public String consejo(String password) {
-        
+
         boolean tieneMayus = false;
         boolean tieneMinus = false;
         boolean tieneNum = false;
         boolean tieneChar = false;
         List<String> faltan = new ArrayList<>();
-        
+
         for (int i = 0; i < password.length(); i++) {
 
             char caracter = password.charAt(i);
@@ -110,8 +108,8 @@ public class EvaluadorPassword {
             }
 
         }
-        
-        if (password.length() <8 ) {
+
+        if (password.length() < 8) {
             faltan.add("tener al menos 8 caracteres");
         }
         if (!tieneMayus) {
@@ -126,12 +124,98 @@ public class EvaluadorPassword {
         if (!tieneChar) {
             faltan.add("un carácter especial");
         }
-        
+
         if (faltan.isEmpty()) {
             return "La contraseña es perfecta!";
         }
-        
+
         return "Para mejorar la puntuación falta: " + String.join(", ", faltan) + ".";
     }
-    
+
+    public String tiempoEstimadoRotura(String password, int puntuacion) {
+
+        int longitud = password.length();
+
+        if (longitud <= 5) {
+
+            return "Prácticamente instantáneo!!";
+
+        }
+
+        if (longitud <= 7) {
+
+            if (puntuacion >= 80) {
+
+                return "Semanas o meses";
+
+            } else if (puntuacion >= 60) {
+
+                return "Días o semanas";
+
+            } else {
+
+                return "Minutos u horas";
+
+            }
+
+        }
+
+        if (longitud == 8) {
+
+            if (puntuacion == 100) {
+
+                return "Aproximádamente 164 años";
+
+            } else if (puntuacion >= 80) {
+
+                return "Entre 15 y 62 años";
+
+            } else if (puntuacion >= 60) {
+
+                return "Semanas o meses";
+
+            } else {
+
+                return "Prácticamente instantáneo!!";
+
+            }
+
+        }
+
+        if (longitud <= 10) {
+
+            if (puntuacion == 100) {
+
+                return "Cientos de miles de años";
+
+            } else if (puntuacion >= 80) {
+
+                return "Miles de años";
+
+            } else {
+
+                return "Años o décadas";
+
+            }
+
+        }
+
+        if (longitud <= 12) {
+
+            if (puntuacion >= 80) {
+
+                return "Millones de años";
+
+            } else {
+
+                return "Miles de años";
+
+            }
+
+        }
+
+        return "Millones de años o más";
+
+    }
+
 }

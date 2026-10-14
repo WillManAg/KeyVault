@@ -57,6 +57,12 @@ public class EvaluaPasswordServlet extends HttpServlet {
         String consejo
                 = evaluador.consejo(password);
 
+        String tiempoRotura
+                = evaluador.tiempoEstimadoRotura(
+                        password,
+                        puntuacion
+                );
+
         Cookie cookie = new Cookie(
                 "ultimaEvaluacion",
                 String.valueOf(System.currentTimeMillis())
@@ -79,6 +85,11 @@ public class EvaluaPasswordServlet extends HttpServlet {
         request.setAttribute(
                 "consejo",
                 consejo
+        );
+
+        request.setAttribute(
+                "tiempoRotura",
+                tiempoRotura
         );
 
         request.getRequestDispatcher(
