@@ -18,6 +18,9 @@
 
     String tiempoRotura
             = (String) request.getAttribute("tiempoRotura");
+
+    String password
+            = (String) request.getAttribute("password");
 %>
 
 <!DOCTYPE html>
@@ -74,6 +77,22 @@
 
             <input type="submit"
                    value="Volver">
+
+        </form>
+
+        <form action="<%= request.getContextPath()%>/guardaVault"
+              method="post">
+
+            <input type="hidden"
+                   name="password"
+                   value="<%= password%>">
+
+            <input type="hidden"
+                   name="puntuacion"
+                   value="<%= puntuacion%>">
+
+            <input type="submit"
+                   value="Guardar en Vault">
 
         </form>
 

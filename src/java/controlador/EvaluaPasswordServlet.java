@@ -92,6 +92,11 @@ public class EvaluaPasswordServlet extends HttpServlet {
                 tiempoRotura
         );
 
+        request.setAttribute(
+                "password",
+                password
+        );
+
         request.getRequestDispatcher(
                 "/resultadoAnalisis.jsp"
         ).forward(request, response);
