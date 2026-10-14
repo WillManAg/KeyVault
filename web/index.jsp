@@ -37,6 +37,12 @@
     }
 %>
 
+
+<%
+    String nombreUsuario
+            = (String) session.getAttribute("nombreUsuario");
+%>
+
 <!DOCTYPE html>
 
 <html>
@@ -52,6 +58,18 @@
     <body>
 
         <h1>KeyVault</h1>
+
+        <%
+            if (nombreUsuario != null) {
+        %>
+
+        <p>
+            Bienvenido, <strong><%= nombreUsuario%></strong>
+        </p>
+
+        <%
+            }
+        %>
 
         <h2>Auditoría de contraseña</h2>
 
@@ -79,6 +97,25 @@
 
         <form action="<%= request.getContextPath()%>/evaluaPassword"
               method="post">
+
+            <%
+                if (nombreUsuario == null) {
+            %>
+
+            <label for="usuario">
+                Usuario:
+            </label>
+
+            <input type="text"
+                   id="usuario"
+                   name="usuario"
+                   required>
+
+            <br><br>
+
+            <%
+                }
+            %>
 
             <label for="password">
                 Introduce una contraseña:

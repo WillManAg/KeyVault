@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.EvaluadorPassword;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/evaluaPassword")
 public class EvaluaPasswordServlet extends HttpServlet {
@@ -28,6 +29,21 @@ public class EvaluaPasswordServlet extends HttpServlet {
 
         String password
                 = request.getParameter("password");
+
+        String usuario
+                = request.getParameter("usuario");
+
+        HttpSession session
+                = request.getSession();
+
+        if (usuario != null && !usuario.trim().isEmpty()) {
+
+            session.setAttribute(
+                    "nombreUsuario",
+                    usuario.trim()
+            );
+
+        }
 
         EvaluadorPassword evaluador
                 = new EvaluadorPassword();
