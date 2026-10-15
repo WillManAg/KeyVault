@@ -142,6 +142,10 @@
                    name="password"
                    required>
 
+            <input type="button"
+                   value="Generar contraseña"
+                   onclick="generarPassword()">
+
             <input type="submit"
                    value="Analizar">
 
@@ -158,5 +162,54 @@
         </form>
 
     </body>
+
+    <script>
+
+        function generarPassword() {
+
+            const mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const minusculas = "abcdefghijklmnopqrstuvwxyz";
+            const numeros = "0123456789";
+            const simbolos = "!@#$%&*";
+
+            const caracteres =
+                    mayusculas
+                    + minusculas
+                    + numeros
+                    + simbolos;
+
+            let password = "";
+
+            password += mayusculas[
+                    Math.floor(Math.random() * mayusculas.length)
+            ];
+
+            password += minusculas[
+                    Math.floor(Math.random() * minusculas.length)
+            ];
+
+            password += numeros[
+                    Math.floor(Math.random() * numeros.length)
+            ];
+
+            password += simbolos[
+                    Math.floor(Math.random() * simbolos.length)
+            ];
+
+
+            while (password.length < 12) {
+
+                password += caracteres[
+                        Math.floor(Math.random() * caracteres.length)
+                ];
+
+            }
+
+
+            document.getElementById("password").value = password;
+
+        }
+
+    </script>
 
 </html>
