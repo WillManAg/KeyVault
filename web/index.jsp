@@ -147,6 +147,16 @@
 
         </form>
 
+        <br>
+
+        <form action="<%= request.getContextPath()%>/consultaVault"
+              method="get">
+
+            <input type="submit"
+                   value="Ver histórico del Vault">
+
+        </form>
+
     </body>
 
 </html>
