@@ -64,7 +64,7 @@ public class EvaluaPasswordServlet extends HttpServlet {
                 );
 
         Cookie cookie = new Cookie(
-                "ultimaEvaluacion",
+                "ultimaAuditoria",
                 String.valueOf(System.currentTimeMillis())
         );
 

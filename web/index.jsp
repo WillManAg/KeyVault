@@ -18,7 +18,7 @@
 
         for (int i = 0; i < cookies.length; i++) {
 
-            if (cookies[i].getName().equals("ultimaEvaluacion")) {
+            if (cookies[i].getName().equals("ultimaAuditoria")) {
 
                 long fecha
                         = Long.parseLong(cookies[i].getValue());
