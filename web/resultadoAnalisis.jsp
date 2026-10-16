@@ -33,68 +33,82 @@
 
         <title>Resultado del análisis</title>
 
+        <link rel="stylesheet"
+              href="<%= request.getContextPath()%>/css/estilos.css">
+
     </head>
 
     <body>
 
-        <h1>Resultado del análisis</h1>
+        <main class="contenedor">
+
+            <section class="tarjeta">
+
+                <h1>Resultado del análisis</h1>
 
 
-        <p>
-            Fortaleza de la contraseña:
-            <strong><%= puntuacion%>%</strong>
-        </p>
+                <p>
+                    Fortaleza de la contraseña:
+                    <strong><%= puntuacion%>%</strong>
+                </p>
 
 
-        <progress value="<%= puntuacion%>"
-                  max="100">
-        </progress>
+                <progress value="<%= puntuacion%>"
+                          max="100">
+                </progress>
 
 
-        <p>
-            Nivel de seguridad:
-            <strong><%= nivel%></strong>
-        </p>
+                <p>
+                    Nivel de seguridad:
+                    <strong><%= nivel%></strong>
+                </p>
 
-        <p>
-            Tiempo estimado de rotura:
-            <strong><%= tiempoRotura%></strong>
-        </p>
+                <p>
+                    Tiempo estimado de rotura:
+                    <strong><%= tiempoRotura%></strong>
+                </p>
 
-        <h2>Recomendaciones para la contraseña</h2>
+                <h2>Recomendaciones para la contraseña</h2>
 
-        <p>
-            <%= consejo%>
-        </p>
+                <p>
+                    <%= consejo%>
+                </p>
 
-        <small>
-            Estimación orientativa basada en la tabla de ataques de fuerza bruta con hardware de alta gama.
-        </small>
+                <small>
+                    Estimación orientativa basada en la tabla de ataques de fuerza bruta con hardware de alta gama.
+                </small>
 
+                <div class="acciones">
 
-        <form action="<%= request.getContextPath()%>/index.jsp"
-              method="get">
+                    <form action="<%= request.getContextPath()%>/index.jsp"
+                          method="get">
 
-            <input type="submit"
-                   value="Volver">
+                        <input type="submit"
+                               value="Volver">
 
-        </form>
+                    </form>
 
-        <form action="<%= request.getContextPath()%>/guardaVault"
-              method="post">
+                    <form action="<%= request.getContextPath()%>/guardaVault"
+                          method="post">
 
-            <input type="hidden"
-                   name="password"
-                   value="<%= password%>">
+                        <input type="hidden"
+                               name="password"
+                               value="<%= password%>">
 
-            <input type="hidden"
-                   name="puntuacion"
-                   value="<%= puntuacion%>">
+                        <input type="hidden"
+                               name="puntuacion"
+                               value="<%= puntuacion%>">
 
-            <input type="submit"
-                   value="Guardar en Vault">
+                        <input type="submit"
+                               value="Guardar en Vault">
 
-        </form>
+                    </form>
+                               
+                </div>
+                               
+            </section>
+
+        </main>
 
     </body>
 

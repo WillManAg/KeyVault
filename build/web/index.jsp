@@ -9,6 +9,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 
 
+
+
 <%
     String ultimaEvaluacion = null;
 
@@ -56,110 +58,120 @@
 
         <title>KeyVault</title>
 
+        <link rel="stylesheet"
+              href="<%= request.getContextPath()%>/css/estilos.css">
+
     </head>
 
     <body>
 
-        <h1>KeyVault</h1>
+        <main class="contenedor">
 
-        <%
-            if (nombreUsuario != null) {
-        %>
+            <section class="tarjeta">
 
-        <p>
-            Bienvenido, <strong><%= nombreUsuario%></strong>
-        </p>
+                <h1>KeyVault</h1>
 
-        <%
-            }
-        %>
+                <%
+                    if (nombreUsuario != null) {
+                %>
 
-        <%
-            if (contadorClaves != null) {
-        %>
+                <p>
+                    Bienvenido, <strong><%= nombreUsuario%></strong>
+                </p>
 
-        <p>
-            Claves guardadas en esta sesión:
-            <strong><%= contadorClaves%></strong>
-        </p>
+                <%
+                    }
+                %>
 
-        <%
-            }
-        %>
+                <%
+                    if (contadorClaves != null) {
+                %>
 
-        <h2>Auditoría de contraseña</h2>
+                <p>
+                    Claves guardadas en esta sesión:
+                    <strong><%= contadorClaves%></strong>
+                </p>
 
-        <%
-            if (ultimaEvaluacion != null) {
-        %>
+                <%
+                    }
+                %>
 
-        <p>
-            Última evaluación:
-            <%= ultimaEvaluacion%>
-        </p>
+                <h2>Auditoría de contraseña</h2>
 
-        <%
-        } else {
-        %>
+                <%
+                    if (ultimaEvaluacion != null) {
+                %>
 
-        <p>
-            Todavía no se ha revisado ninguna contraseña...
-        </p>
+                <p>
+                    Última evaluación:
+                    <%= ultimaEvaluacion%>
+                </p>
 
-        <%
-            }
-        %>
+                <%
+                } else {
+                %>
+
+                <p>
+                    Todavía no se ha revisado ninguna contraseña...
+                </p>
+
+                <%
+                    }
+                %>
 
 
-        <form action="<%= request.getContextPath()%>/evaluaPassword"
-              method="post">
+                <form action="<%= request.getContextPath()%>/evaluaPassword"
+                      method="post">
 
-            <%
-                if (nombreUsuario == null) {
-            %>
+                    <%
+                        if (nombreUsuario == null) {
+                    %>
 
-            <label for="usuario">
-                Usuario:
-            </label>
+                    <label for="usuario">
+                        Usuario:
+                    </label>
 
-            <input type="text"
-                   id="usuario"
-                   name="usuario"
-                   required>
+                    <input type="text"
+                           id="usuario"
+                           name="usuario"
+                           required>
 
-            <br><br>
+                    <br><br>
 
-            <%
-                }
-            %>
+                    <%
+                        }
+                    %>
 
-            <label for="password">
-                Introduce una contraseña:
-            </label>
+                    <label for="password">
+                        Introduce una contraseña:
+                    </label>
 
-            <input type="text"
-                   id="password"
-                   name="password"
-                   required>
+                    <input type="text"
+                           id="password"
+                           name="password"
+                           required>
 
-            <input type="button"
-                   value="Generar contraseña"
-                   onclick="generarPassword()">
+                    <input type="button"
+                           value="Generar contraseña"
+                           onclick="generarPassword()">
 
-            <input type="submit"
-                   value="Analizar">
+                    <input type="submit"
+                           value="Analizar">
 
-        </form>
+                </form>
 
-        <br>
+                <br>
 
-        <form action="<%= request.getContextPath()%>/consultaVault"
-              method="get">
+                <form action="<%= request.getContextPath()%>/consultaVault"
+                      method="get">
 
-            <input type="submit"
-                   value="Ver histórico del Vault">
+                    <input type="submit"
+                           value="Ver histórico del Vault">
 
-        </form>
+                </form>
+            </section>
+
+        </main>
 
     </body>
 

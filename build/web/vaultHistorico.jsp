@@ -25,87 +25,98 @@
 
         <title>Histórico del Vault</title>
 
+        <link rel="stylesheet"
+              href="<%= request.getContextPath()%>/css/estilos.css">
+
     </head>
 
     <body>
 
-        <h1>Histórico del Vault</h1>
+        <main class="contenedor">
+
+            <section class="tarjeta">
+
+                <h1>Histórico del Vault</h1>
 
 
-        <%
-            if (registros != null && !registros.isEmpty()) {
-        %>
+                <%
+                    if (registros != null && !registros.isEmpty()) {
+                %>
 
 
-        <table border="1">
+                <table>
 
-            <tr>
+                    <tr>
 
-                <th>Clave</th>
+                        <th>Clave</th>
 
-                <th>Fortaleza</th>
+                        <th>Fortaleza</th>
 
-                <th>Fecha de registro</th>
+                        <th>Fecha de registro</th>
 
-            </tr>
-
-
-            <%
-                for (RegistroPassword registro : registros) {
-            %>
+                    </tr>
 
 
-            <tr>
-
-                <td>
-                    <%= registro.getClave()%>
-                </td>
-
-                <td>
-                    <%= registro.getNivelFortaleza()%>%
-                </td>
-
-                <td>
-                    <%= registro.getFechaRegistro()%>
-                </td>
-
-            </tr>
+                    <%
+                        for (RegistroPassword registro : registros) {
+                    %>
 
 
-            <%
-                }
-            %>
+                    <tr>
+
+                        <td>
+                            <%= registro.getClave()%>
+                        </td>
+
+                        <td>
+                            <%= registro.getNivelFortaleza()%>%
+                        </td>
+
+                        <td>
+                            <%= registro.getFechaRegistro()%>
+                        </td>
+
+                    </tr>
 
 
-        </table>
+                    <%
+                        }
+                    %>
 
 
-        <%
-        } else {
-        %>
+                </table>
 
 
-        <p>
-            Todavía no hay registros guardados en el Vault.
-        </p>
+                <%
+                } else {
+                %>
 
 
-        <%
-            }
-        %>
+                <p>
+                    Todavía no hay registros guardados en el Vault.
+                </p>
 
 
-        <br>
+                <%
+                    }
+                %>
 
 
-        <form action="<%= request.getContextPath()%>/index.jsp"
-              method="get">
+                <br>
 
-            <input type="submit"
-                   value="Volver">
+                <div class="acciones">
+                    <form action="<%= request.getContextPath()%>/index.jsp"
+                          method="get">
 
-        </form>
+                        <input type="submit"
+                               value="Volver">
 
+                    </form>
+                </div>
+
+            </section>
+
+        </main>
 
     </body>
 
